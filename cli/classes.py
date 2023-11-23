@@ -17,7 +17,7 @@ class Item:
 class Warehouse:
     
     def __init__(self, warehouse_id:int) -> None:
-        self.warehouse_id = warehouse_id
+        self.id = warehouse_id
         self.stock = []
     
     def occupancy(self) -> int:
@@ -58,6 +58,7 @@ class Employee(User):
     
     def __init__(self, user_name: str, password:str, head_of:list=None) -> None:
         super().__init__(user_name)
+        self.user_name = user_name
         self.__password = password
         self.head_of = [Employee(**employee) for employee in head_of] if head_of else []
     
@@ -79,3 +80,6 @@ class Employee(User):
         if actions:
             for action in actions:
                 print(action)
+    
+    def __str__(self) -> str:
+        return f'{self.user_name}, {self.head_of}'
